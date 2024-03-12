@@ -1,4 +1,4 @@
-use std::cmp::max;
+use std::{cmp::max, intrinsics::exp2f64};
 
 struct NeuralNode{
     inputs: Vec<f64>,
@@ -9,7 +9,7 @@ struct NeuralNode{
 
 pub trait NeuralFuncs{
     // ReLU Activation function
-    fn activation_function(output: f64) -> f64{
+    fn relu_activation(output: f64) -> f64{
         if output > 0.0{
             return output;
         }
@@ -24,6 +24,10 @@ pub trait NeuralFuncs{
         }
         sum += bais;
         return sum;
+    }
+
+    fn sigmoid_activation(output: f64) -> f64{
+        1.0 / (1.0 + (-output).exp())
     }
 
     fn backpropogate(){}
